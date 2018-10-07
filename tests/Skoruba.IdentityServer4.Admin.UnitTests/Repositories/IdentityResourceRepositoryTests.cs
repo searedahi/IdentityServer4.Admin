@@ -46,7 +46,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Repositories
                 var newIdentityResource = await context.IdentityResources.Where(x => x.Id == identityResource.Id).SingleAsync();
 
                 //Assert new identity resource
-                newIdentityResource.ShouldBeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
+                newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
             }
         }
 
@@ -67,7 +67,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Repositories
                 var newIdentityResource = await identityResourceRepository.GetIdentityResourceAsync(identityResource.Id);
 
                 //Assert new identity resource
-                newIdentityResource.ShouldBeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
+                newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
             }
         }
 
@@ -88,7 +88,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Repositories
                 var newIdentityResource = await context.IdentityResources.Where(x => x.Id == identityResource.Id).SingleAsync();
 
                 //Assert new identity resource
-                newIdentityResource.ShouldBeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
+                newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
 
                 //Delete identity resource
                 await identityResourceRepository.DeleteIdentityResourceAsync(newIdentityResource);
@@ -118,7 +118,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Repositories
                 var newIdentityResource = await context.IdentityResources.Where(x => x.Id == identityResource.Id).SingleOrDefaultAsync();
 
                 //Assert new identity resource
-                newIdentityResource.ShouldBeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
+                newIdentityResource.Should().BeEquivalentTo(identityResource, options => options.Excluding(o => o.Id));
 
                 //Detached the added item
                 context.Entry(newIdentityResource).State = EntityState.Detached;
@@ -133,7 +133,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Repositories
                 var updatedIdentityResourceEntity = await context.IdentityResources.Where(x => x.Id == updatedIdentityResource.Id).SingleAsync();
 
                 //Assert updated identity resource
-                updatedIdentityResource.ShouldBeEquivalentTo(updatedIdentityResourceEntity);
+                updatedIdentityResource.Should().BeEquivalentTo(updatedIdentityResourceEntity);
             }
         }
     }

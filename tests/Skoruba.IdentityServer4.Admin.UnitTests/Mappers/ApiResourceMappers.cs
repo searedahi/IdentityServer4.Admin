@@ -20,13 +20,11 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Mappers
             //Asert
             apiResourceDto.Should().NotBeNull();
 
-            apiResource.ShouldBeEquivalentTo(apiResourceDto, options =>
-                options.Excluding(o => o.Secrets)
-                       .Excluding(o => o.Scopes)
-                       .Excluding(o => o.UserClaims));
+            apiResource.Should().BeEquivalentTo(apiResourceDto, options =>
+                options.Excluding(o => o.UserClaims));
 
             //Assert collection
-            apiResource.UserClaims.Select(x => x.Type).ShouldBeEquivalentTo(apiResourceDto.UserClaims);
+            apiResource.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiResourceDto.UserClaims);
         }
 
         [Fact]
@@ -40,13 +38,11 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Mappers
 
             apiResource.Should().NotBeNull();
 
-            apiResource.ShouldBeEquivalentTo(apiResourceDto, options =>
-                options.Excluding(o => o.Secrets)
-                    .Excluding(o => o.Scopes)
-                    .Excluding(o => o.UserClaims));
+            apiResource.Should().BeEquivalentTo(apiResourceDto, options =>
+                options.Excluding(o => o.UserClaims));
 
             //Assert collection
-            apiResource.UserClaims.Select(x => x.Type).ShouldBeEquivalentTo(apiResourceDto.UserClaims);
+            apiResource.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiResourceDto.UserClaims);
         }
 
         [Fact]
@@ -61,13 +57,11 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Mappers
             //Asert
             apiResourceDto.Should().NotBeNull();
 
-            apiResource.ShouldBeEquivalentTo(apiResourceDto, options =>
-                options.Excluding(o => o.Secrets)
-                    .Excluding(o => o.Scopes)
-                    .Excluding(o => o.UserClaims));
+            apiResource.Should().BeEquivalentTo(apiResourceDto, options =>
+                options.Excluding(o => o.UserClaims));
 
             //Assert collection
-            apiResource.UserClaims.Select(x => x.Type).ShouldBeEquivalentTo(apiResourceDto.UserClaims);
+            apiResource.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiResourceDto.UserClaims);
         }
 
         [Fact]
@@ -81,13 +75,13 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Mappers
 
             apiScope.Should().NotBeNull();
 
-            apiScope.ShouldBeEquivalentTo(apiScopeDto, options =>
+            apiScope.Should().BeEquivalentTo(apiScopeDto, options =>
                 options.Excluding(o => o.UserClaims)
-                       .Excluding(o => o.ApiResource)
-                       .Excluding(o => o.Id));
+                       .Excluding(o => o.ApiResourceId)
+                       .Excluding(o => o.ApiScopeId));
 
             //Assert collection
-            apiScope.UserClaims.Select(x => x.Type).ShouldBeEquivalentTo(apiScopeDto.UserClaims);
+            apiScope.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(apiScopeDto.UserClaims);
             apiScope.Id.Should().Be(apiScopeDto.ApiScopeId);
         }
 
@@ -103,9 +97,9 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Mappers
             //Asert
             apiSecretsDto.Should().NotBeNull();
 
-            apiSecret.ShouldBeEquivalentTo(apiSecretsDto, options =>
-                options.Excluding(o => o.ApiResource)
-                    .Excluding(o => o.Id));
+            apiSecret.Should().BeEquivalentTo(apiSecretsDto, options =>
+                options.Excluding(o => o.ApiResourceName)
+                    .Excluding(o => o.ApiSecretId));
 
             apiSecret.Id.Should().Be(apiSecretsDto.ApiSecretId);
         }
@@ -121,9 +115,9 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Mappers
 
             apiSecret.Should().NotBeNull();
 
-            apiSecret.ShouldBeEquivalentTo(apiSecretsDto, options =>
-                options.Excluding(o => o.ApiResource)
-                    .Excluding(o => o.Id));
+            apiSecret.Should().BeEquivalentTo(apiSecretsDto, options =>
+                options.Excluding(o => o.ApiResourceName)
+                    .Excluding(o => o.ApiSecretId));
 
             apiSecret.Id.Should().Be(apiSecretsDto.ApiSecretId);
         }

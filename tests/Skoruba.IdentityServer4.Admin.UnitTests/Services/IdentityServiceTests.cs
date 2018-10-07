@@ -78,7 +78,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newUserDto = await identityService.GetUserAsync(userDto);
 
                 //Assert new user
-                userDto.ShouldBeEquivalentTo(newUserDto);
+                userDto.Should().BeEquivalentTo(newUserDto);
             }
         }
 
@@ -108,7 +108,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newUserDto = await identityService.GetUserAsync(userDto);
 
                 //Assert new user
-                userDto.ShouldBeEquivalentTo(newUserDto);
+                userDto.Should().BeEquivalentTo(newUserDto);
 
                 var userProvider = IdentityMock.GenerateRandomUserProviders(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(),
                     newUserDto.Id);
@@ -158,7 +158,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newUserDto = await identityService.GetUserAsync(userDto);
 
                 //Assert new user
-                userDto.ShouldBeEquivalentTo(newUserDto);
+                userDto.Should().BeEquivalentTo(newUserDto);
 
                 //Generate random new role
                 var roleDto = IdentityDtoMock.GenerateRandomRole(0);
@@ -172,7 +172,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newRoleDto = await identityService.GetRoleAsync(roleDto);
 
                 //Assert new role
-                roleDto.ShouldBeEquivalentTo(newRoleDto);
+                roleDto.Should().BeEquivalentTo(newRoleDto);
 
                 var userRoleDto = IdentityDtoMock.GenerateRandomUserRole(roleDto.Id, userDto.Id);
 
@@ -211,7 +211,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newUserDto = await identityService.GetUserAsync(userDto);
 
                 //Assert new user
-                userDto.ShouldBeEquivalentTo(newUserDto);
+                userDto.Should().BeEquivalentTo(newUserDto);
 
                 //Generate random new role
                 var roleDto = IdentityDtoMock.GenerateRandomRole(0);
@@ -225,7 +225,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newRoleDto = await identityService.GetRoleAsync(roleDto);
 
                 //Assert new role
-                roleDto.ShouldBeEquivalentTo(newRoleDto);
+                roleDto.Should().BeEquivalentTo(newRoleDto);
 
                 var userRoleDto = IdentityDtoMock.GenerateRandomUserRole(roleDto.Id, userDto.Id);
 
@@ -269,7 +269,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newUserDto = await identityService.GetUserAsync(userDto);
 
                 //Assert new user
-                userDto.ShouldBeEquivalentTo(newUserDto);
+                userDto.Should().BeEquivalentTo(newUserDto);
 
                 //Generate random new user claim
                 var userClaimDto = IdentityDtoMock.GenerateRandomUserClaim(0, userDto.Id);
@@ -283,7 +283,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newUserClaim = await identityService.GetUserClaimAsync(userDto.Id, claim.Id);
 
                 //Assert new user claim
-                userClaimDto.ShouldBeEquivalentTo(newUserClaim);
+                userClaimDto.Should().BeEquivalentTo(newUserClaim);
             }
         }
 
@@ -313,7 +313,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newUserDto = await identityService.GetUserAsync(userDto);
 
                 //Assert new user
-                userDto.ShouldBeEquivalentTo(newUserDto);
+                userDto.Should().BeEquivalentTo(newUserDto);
 
                 //Generate random new user claim
                 var userClaimDto = IdentityDtoMock.GenerateRandomUserClaim(0, userDto.Id);
@@ -327,7 +327,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newUserClaim = await identityService.GetUserClaimAsync(userDto.Id, claim.Id);
 
                 //Assert new user claim
-                userClaimDto.ShouldBeEquivalentTo(newUserClaim);
+                userClaimDto.Should().BeEquivalentTo(newUserClaim);
 
                 await identityService.DeleteUserClaimsAsync(userClaimDto);
 
@@ -362,7 +362,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newUserDto = await identityService.GetUserAsync(userDto);
 
                 //Assert new user
-                userDto.ShouldBeEquivalentTo(newUserDto);
+                userDto.Should().BeEquivalentTo(newUserDto);
 
                 //Detached the added item
                 context.Entry(user).State = EntityState.Detached;
@@ -376,7 +376,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var updatedUser = await identityService.GetUserAsync(userDtoForUpdate);
 
                 //Assert updated user
-                userDtoForUpdate.ShouldBeEquivalentTo(updatedUser);
+                userDtoForUpdate.Should().BeEquivalentTo(updatedUser);
             }
         }
 
@@ -405,7 +405,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newUserDto = await identityService.GetUserAsync(userDto);
 
                 //Assert new user
-                userDto.ShouldBeEquivalentTo(newUserDto);
+                userDto.Should().BeEquivalentTo(newUserDto);
 
                 //Remove user
                 await identityService.DeleteUserAsync(newUserDto);
@@ -445,7 +445,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newRoleDto = await identityService.GetRoleAsync(roleDto);
 
                 //Assert new role
-                roleDto.ShouldBeEquivalentTo(newRoleDto);
+                roleDto.Should().BeEquivalentTo(newRoleDto);
             }
         }
 
@@ -474,7 +474,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newRoleDto = await identityService.GetRoleAsync(roleDto);
 
                 //Assert new role
-                roleDto.ShouldBeEquivalentTo(newRoleDto);
+                roleDto.Should().BeEquivalentTo(newRoleDto);
 
                 //Detached the added item
                 context.Entry(role).State = EntityState.Detached;
@@ -488,7 +488,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var updatedRole = await identityService.GetRoleAsync(roleDtoForUpdate);
 
                 //Assert updated role
-                roleDtoForUpdate.ShouldBeEquivalentTo(updatedRole);
+                roleDtoForUpdate.Should().BeEquivalentTo(updatedRole);
             }
         }
 
@@ -517,7 +517,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newRoleDto = await identityService.GetRoleAsync(roleDto);
 
                 //Assert new role
-                roleDto.ShouldBeEquivalentTo(newRoleDto);
+                roleDto.Should().BeEquivalentTo(newRoleDto);
 
                 //Remove role
                 await identityService.DeleteRoleAsync(newRoleDto);
@@ -557,7 +557,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newRoleDto = await identityService.GetRoleAsync(roleDto);
 
                 //Assert new role
-                roleDto.ShouldBeEquivalentTo(newRoleDto);
+                roleDto.Should().BeEquivalentTo(newRoleDto);
 
                 //Generate random new role claim
                 var roleClaimDto = IdentityDtoMock.GenerateRandomRoleClaim(0, roleDto.Id);
@@ -571,7 +571,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newRoleClaimDto = await identityService.GetRoleClaimAsync(roleDto.Id, roleClaimDto.ClaimId);
 
                 //Assert new role
-                roleClaimDto.ShouldBeEquivalentTo(newRoleClaimDto);
+                roleClaimDto.Should().BeEquivalentTo(newRoleClaimDto);
             }
         }
 
@@ -601,7 +601,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newRoleDto = await identityService.GetRoleAsync(roleDto);
 
                 //Assert new role
-                roleDto.ShouldBeEquivalentTo(newRoleDto);
+                roleDto.Should().BeEquivalentTo(newRoleDto);
 
                 //Generate random new role claim
                 var roleClaimDto = IdentityDtoMock.GenerateRandomRoleClaim(0, roleDto.Id);
@@ -615,7 +615,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var newRoleClaimDto = await identityService.GetRoleClaimAsync(roleDto.Id, roleClaimDto.ClaimId);
 
                 //Assert new role
-                roleClaimDto.ShouldBeEquivalentTo(newRoleClaimDto);
+                roleClaimDto.Should().BeEquivalentTo(newRoleClaimDto);
 
                 await identityService.DeleteRoleClaimsAsync(roleClaimDto);
 

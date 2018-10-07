@@ -20,11 +20,11 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Mappers
             //Asert
             identityResourceDto.Should().NotBeNull();
 
-            identityResource.ShouldBeEquivalentTo(identityResourceDto, options =>
+            identityResource.Should().BeEquivalentTo(identityResourceDto, options =>
                 options.Excluding(o => o.UserClaims));
 
             //Assert collection
-            identityResource.UserClaims.Select(x => x.Type).ShouldBeEquivalentTo(identityResourceDto.UserClaims);
+            identityResource.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(identityResourceDto.UserClaims);
         }
 
         [Fact]
@@ -38,11 +38,11 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Mappers
 
             identityResource.Should().NotBeNull();
 
-            identityResource.ShouldBeEquivalentTo(identityResourceDto, options =>
+            identityResource.Should().BeEquivalentTo(identityResourceDto, options =>
                 options.Excluding(o => o.UserClaims));
 
             //Assert collection
-            identityResource.UserClaims.Select(x => x.Type).ShouldBeEquivalentTo(identityResourceDto.UserClaims);
+            identityResource.UserClaims.Select(x => x.Type).Should().BeEquivalentTo(identityResourceDto.UserClaims);
         }
     }
 }
