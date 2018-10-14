@@ -72,10 +72,10 @@ namespace Skoruba.IdentityServer4.Admin.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> PersistedGrant(string id, int? page)
+        public async Task<IActionResult> PersistedGrant(Guid id, int? page)
         {
             var persistedGrants = await _persistedGrantService.GetPersitedGrantsByUser(id, page ?? 1);
-            persistedGrants.SubjectId = Convert.ToInt16(id);
+            persistedGrants.SubjectId = id;
 
             return View(persistedGrants);
         }

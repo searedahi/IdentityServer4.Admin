@@ -28,7 +28,7 @@ namespace Skoruba.IdentityServer4.Admin.BusinessLogic.Repositories
             var pagedList = new PagedList<PersistedGrantDataView>();
 
             var persistedGrantByUsers = (from pe in _dbContext.PersistedGrants
-                                         join us in _dbContext.Users on Convert.ToInt32(pe.SubjectId) equals us.Id into per
+                                         join us in _dbContext.Users on pe.SubjectId equals us.Id.ToString() into per
                                          from us in per.DefaultIfEmpty()
                                          select new PersistedGrantDataView
                                          {
@@ -49,11 +49,11 @@ namespace Skoruba.IdentityServer4.Admin.BusinessLogic.Repositories
             return pagedList;
         }
 
-        public async Task<PagedList<PersistedGrant>> GetPersitedGrantsByUser(string subjectId, int page = 1, int pageSize = 10)
+        public async Task<PagedList<PersistedGrant>> GetPersitedGrantsByUser(Guid subjectId, int page = 1, int pageSize = 10)
         {
             var pagedList = new PagedList<PersistedGrant>();
 
-            var persistedGrantsData = await _dbContext.PersistedGrants.Where(x => x.SubjectId == subjectId).Select(x => new PersistedGrant()
+            var persistedGrantsData = await _dbContext.PersistedGrants.Where(x => x.SubjectId == subjectId.ToString()).Select(x => new PersistedGrant()
             {
                 SubjectId = x.SubjectId,
                 Type = x.Type,
@@ -64,7 +64,7 @@ namespace Skoruba.IdentityServer4.Admin.BusinessLogic.Repositories
                 CreationTime = x.CreationTime
             }).PageBy(x => x.SubjectId, page, pageSize).ToListAsync();
 
-            var persistedGrantsCount = await _dbContext.PersistedGrants.Where(x => x.SubjectId == subjectId).CountAsync();
+            var persistedGrantsCount = await _dbContext.PersistedGrants.Where(x => x.SubjectId == subjectId.ToString()).CountAsync();
 
             pagedList.Data.AddRange(persistedGrantsData);
             pagedList.TotalCount = persistedGrantsCount;
@@ -87,12 +87,12 @@ namespace Skoruba.IdentityServer4.Admin.BusinessLogic.Repositories
             return await AutoSaveChangesAsync();
         }
 
-        public Task<bool> ExistsPersistedGrantsAsync(string subjectId)
+        public Task<bool> ExistsPersistedGrantsAsync(Guid subjectId)
         {
-            return _dbContext.PersistedGrants.AnyAsync(x => x.SubjectId == subjectId);
+            return _dbContext.PersistedGrants.AnyAsync(x => x.SubjectId == subjectId.ToString());
         }
 
-        public async Task<int> DeletePersistedGrantsAsync(int userId)
+        public async Task<int> DeletePersistedGrantsAsync(Guid userId)
         {
             var grants = await _dbContext.PersistedGrants.Where(x => x.SubjectId == userId.ToString()).ToListAsync();
 
